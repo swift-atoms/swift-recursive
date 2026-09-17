@@ -4,40 +4,40 @@ import CompilerPluginSupport
 import PackageDescription
 
 let package = Package(
-    name: "swift-recursive-derivation",
+    name: "swift-recursive",
     products: [
-        .library(name: "Recursive Derivation", targets: ["Recursive Derivation"]),
-        .library(name: "Recursive Derivation Core", targets: ["Recursive Derivation Core"]),
+        .library(name: "Recursive Macro", targets: ["Recursive Macro"]),
+        .library(name: "Recursive Macro Core", targets: ["Recursive Macro Core"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/swift-molecules/swift-base-functor-derivation.git", branch: "main"),
+        .package(url: "https://github.com/swift-atoms/swift-base-functor.git", branch: "main"),
         .package(url: "https://github.com/swiftlang/swift-syntax.git", "603.0.2"..<"604.0.0"),
     ],
     targets: [
         .target(
-            name: "Recursive Derivation Core",
+            name: "Recursive Macro Core",
             dependencies: [
-                .product(name: "Base Functor Derivation Core", package: "swift-base-functor-derivation"),
+                .product(name: "Base Functor Macro Core", package: "swift-base-functor"),
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxBuilder", package: "swift-syntax"),
             ]
         ),
         .macro(
-            name: "Recursive Derivation Macros",
+            name: "Recursive Macro Plugin",
             dependencies: [
-                "Recursive Derivation Core",
+                "Recursive Macro Core",
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 .product(name: "SwiftSyntax", package: "swift-syntax"),
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
             ]
         ),
         .target(
-            name: "Recursive Derivation",
-            dependencies: ["Recursive Derivation Macros"]
+            name: "Recursive Macro",
+            dependencies: ["Recursive Macro Plugin"]
         ),
         .testTarget(
-            name: "Recursive Derivation Tests",
-            dependencies: ["Recursive Derivation"]
+            name: "Recursive Macro Tests",
+            dependencies: ["Recursive Macro"]
         ),
     ],
     swiftLanguageModes: [.v6]

@@ -1,6 +1,6 @@
 import SwiftSyntax
 import SwiftSyntaxMacros
-import Recursive_Derivation_Core
+import Recursive_Macro_Core
 
 public struct Macro: MemberMacro {
     public static func expansion(
