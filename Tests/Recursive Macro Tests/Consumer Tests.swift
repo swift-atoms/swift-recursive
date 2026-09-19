@@ -1,6 +1,8 @@
+import Functor_Base_Macro
 import Recursive_Macro
 import Testing
 
+@FunctorBase
 @Recursive
 private indirect enum Natural {
     case zero
