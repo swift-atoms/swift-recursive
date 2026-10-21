@@ -12,7 +12,7 @@ private indirect enum Natural {
 @Test
 func `recursive derivation projects one layer`() {
     let child = Natural.zero
-    guard case let .successor(projected) = Natural.successor(child).project() else {
+    guard case .successor(let projected) = Natural.successor(child).project() else {
         Issue.record("Expected successor layer")
         return
     }

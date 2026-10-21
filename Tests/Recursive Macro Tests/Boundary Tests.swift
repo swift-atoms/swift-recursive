@@ -21,7 +21,7 @@ struct `Recursive boundaries` {
 
     @Test
     func `a node projects both children unchanged and in order`() {
-        guard case let .node(left, right) = Tree.node(.leaf(1), .node(.leaf(2), .leaf(3))).project(),
+        guard case .node(let left, let right) = Tree.node(.leaf(1), .node(.leaf(2), .leaf(3))).project(),
             case .leaf(1) = left,
             case .node(.leaf(2), .leaf(3)) = right
         else {

@@ -1,6 +1,6 @@
-import Type_Algebra_Syntax
 public import SwiftSyntax
 import SwiftSyntaxBuilder
+import Type_Algebra_Syntax
 
 public enum Derivation {}
 
@@ -18,12 +18,14 @@ extension Derivation {
             return "case let .\(element.name.text)(\(Type.Syntax.Recursion.pattern(of: parameters))): return .\(element.name.text)(\(Type.Syntax.Recursion.arguments(of: parameters)))"
         }.joined(separator: "\n")
 
-        return ["""
+        return [
+            """
             \(raw: access)func project() -> Base<Self> {
                 switch self {
                 \(raw: branches)
                 }
             }
-            """]
+            """
+        ]
     }
 }
